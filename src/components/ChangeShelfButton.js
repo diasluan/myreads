@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 
-class Book extends Component {
+class ChangeShelfButton extends Component {
   static PropTypes = {
     changeShelf: PropTypes.func.isRequired,
     book: PropTypes.number.isRequired
@@ -19,4 +19,4 @@ class Book extends Component {
     )
   }
 }
- export default Book
+ export default ChangeShelfButton

@@ -21,7 +21,7 @@ class Bookshelf extends Component {
                   id={book.id}
                   title={book.title} 
                   author={book.author} 
-                  cover={book.cover} 
+                  cover={book.imageLinks.thumbnail} 
                   changeShelf={this.props.changeShelf} />
               </li>
             ))

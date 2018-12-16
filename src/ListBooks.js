@@ -4,7 +4,7 @@ import Bookshelf from './components/Bookshelf'
 
 class ListBooks extends Component {
   static PropTypes = {
-    bookshelves: PropTypes.array.isRequired,
+    books: PropTypes.array.isRequired,
     changeShelf: PropTypes.func.isRequired
   }
 
@@ -16,14 +16,15 @@ class ListBooks extends Component {
           </div>
           <div className="list-books-content">
             <div>
-            {this.props.bookshelves.map((bookshelf) => (
-              <Bookshelf 
-                key={bookshelf.key}
-                title={bookshelf.title} 
-                books={bookshelf.books} 
+              <Bookshelf books={this.props.books.filter((book) => book.shelf === "currentlyReading")} 
+                title="Currently Reading"
                 changeShelf={this.props.changeShelf} />
-              )
-            )}
+              <Bookshelf books={this.props.books.filter((book) => book.shelf === "wantToRead")} 
+                title="Want to Read"
+                changeShelf={this.props.changeShelf} />
+              <Bookshelf books={this.props.books.filter((book) => book.shelf === "read")} 
+                title="Read"
+                changeShelf={this.props.changeShelf} />
             </div>
           </div>
           <div className="open-search">
