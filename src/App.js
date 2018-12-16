@@ -46,8 +46,9 @@ class BooksApp extends React.Component {
     ]
   }
 
-  changeShelf = (book) => {
+  changeShelf = (book, target) => {
     console.log(book)
+    console.log(target)
   }
 
   render() {
