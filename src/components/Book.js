@@ -4,10 +4,7 @@ import ChangeShelfButton from './ChangeShelfButton'
 
 class Book extends Component {
   static PropTypes = {
-    id: PropTypes.number.isRequired,
-    title: PropTypes.string.isRequired,
-    author: PropTypes.string.isRequired,
-    cover: PropTypes.string.isRequired,
+    book: PropTypes.object.isRequired,
     changeShelf: PropTypes.func.isRequired
   }
 
@@ -15,13 +12,13 @@ class Book extends Component {
     return (
       <div className="book">
         <div className="book-top">
-          <div className="book-cover" style={{ width: 128, height: 192, backgroundImage: `url("${this.props.cover}")` }}></div>
+          <div className="book-cover" style={{ width: 128, height: 192, backgroundImage: `url("${this.props.book.imageLinks.thumbnail}")` }}></div>
           <div className="book-shelf-changer">
-            <ChangeShelfButton changeShelf={this.props.changeShelf} book={this.props.id} />
+            <ChangeShelfButton changeShelf={this.props.changeShelf} book={this.props.book} />
           </div>
         </div>
-        <div className="book-title">{this.props.title}</div>
-        <div className="book-authors">{this.props.author}</div>
+        <div className="book-title">{this.props.book.title}</div>
+        <div className="book-authors">{this.props.book.author}</div>
       </div>
     )
   }

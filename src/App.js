@@ -24,6 +24,8 @@ class BooksApp extends React.Component {
   }
 
   changeShelf = (book, target) => {
+    console.log(book)
+    console.log(target)
     BooksAPI.update(book, target).then(() => {
       this.fetchBooks()
     })

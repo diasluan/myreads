@@ -4,7 +4,7 @@ import PropTypes from 'prop-types'
 class ChangeShelfButton extends Component {
   static PropTypes = {
     changeShelf: PropTypes.func.isRequired,
-    book: PropTypes.number.isRequired
+    book: PropTypes.object.isRequired
   }
 
   render() {
