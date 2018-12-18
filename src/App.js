@@ -3,10 +3,11 @@ import React from 'react'
 import './App.css'
 import * as BooksAPI from './BooksAPI'
 import ListBooks from './ListBooks'
+import Search from './components/Search'
 
 class BooksApp extends React.Component {
   state = {
-    showSearchPage: false,
+    showSearchPage: true,
     books: []
   }
 
@@ -24,30 +25,21 @@ class BooksApp extends React.Component {
   }
 
   changeShelf = (book, target) => {
-    console.log(book)
-    console.log(target)
     BooksAPI.update(book, target).then(() => {
       this.fetchBooks()
     })
   }
 
+  performSearch = (query) => {
+    console.log(query)
+  }
+
   render() {
     return (
       <div className="app">
-        {this.state.showSearchPage ? (
-          <div className="search-books">
-            <div className="search-books-bar">
-              <button className="close-search" onClick={() => this.setState({ showSearchPage: false })}>Close</button>
-              <div className="search-books-input-wrapper">
-                <input type="text" placeholder="Search by title or author"/>
-
-              </div>
-            </div>
-            <div className="search-books-results">
-              <ol className="books-grid"></ol>
-            </div>
-          </div>
-        ) : ( <ListBooks books={this.state.books} changeShelf={this.changeShelf} /> ) }
+        {this.state.showSearchPage ? 
+        ( <Search performSearch={this.performSearch} />) : 
+        ( <ListBooks books={this.state.books} changeShelf={this.changeShelf} /> ) }
     </div>
     ) 
   }
