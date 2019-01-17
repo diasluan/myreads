@@ -32,7 +32,17 @@ class BooksApp extends React.Component {
   }
 
   performSearch = (query) => {
-    console.log(query)
+    if (query === '') {
+      this.fetchBooks()
+    } else {
+      BooksAPI.search(query).then((result) => {
+        if (result) {
+          this.setState(() => ({
+            books: result
+          })) 
+        }
+      })
+    }
   }
 
   render() {
@@ -42,7 +52,7 @@ class BooksApp extends React.Component {
           <ListBooks books={this.state.books} changeShelf={this.changeShelf}/>
         )} />
         <Route path='/search' render={() =>(
-          <Search performSearch={this.performSearch}/>
+          <Search books={this.state.books} performSearch={this.performSearch}/>
         )} />
     </div>
     ) 

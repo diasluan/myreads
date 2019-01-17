@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import Bookshelf from './components/Bookshelf';
 import { Link } from 'react-router-dom';
 
 class Search extends Component {
   static PropTypes = {
-    title: PropTypes.string.isRequired,
     books: PropTypes.array,
+    changeShelf: PropTypes.func.isRequired,
     performSearch: PropTypes.func.isRequired
   }
 
@@ -19,7 +20,9 @@ class Search extends Component {
           </div>
         </div>
         <div className="search-books-results">
-          <ol className="books-grid"></ol>
+          <Bookshelf books={this.props.books} 
+                title="Search Results"
+                changeShelf={this.props.changeShelf} />
         </div>
       </div>
     )

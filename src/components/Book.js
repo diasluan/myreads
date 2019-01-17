@@ -8,11 +8,25 @@ class Book extends Component {
     changeShelf: PropTypes.func.isRequired
   }
 
+  state = {
+    image: 'http://www.hkbookcity.com/image_book/9889755785.jpg'
+  }
+
+  componentDidMount = () => {
+    if (this.props.book.imageLinks === undefined) {
+      return
+    } else {
+      this.setState(() => ({
+        image: this.props.book.imageLinks.thumbnail
+      }))
+    }
+  }
+
   render() {
     return (
       <div className="book">
         <div className="book-top">
-          <div className="book-cover" style={{ width: 128, height: 192, backgroundImage: `url("${this.props.book.imageLinks.thumbnail}")` }}></div>
+          <div className="book-cover" style={{ width: 128, height: 192, backgroundImage: `url("${this.state.image}")` }}></div>
           <div className="book-shelf-changer">
             <ChangeShelfButton changeShelf={this.props.changeShelf} book={this.props.book} />
           </div>
